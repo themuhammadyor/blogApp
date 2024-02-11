@@ -16,6 +16,14 @@ class AbstractBaseModel(models.Model):
 class User(AbstractUser, AbstractBaseModel):
     avatar = models.ImageField(upload_to='avatars')
 
+    @property
+    def post_count(self):
+        return self.posts.count()
+
+    class Meta:
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
+
 
 class Post(AbstractBaseModel):
     title = models.CharField(max_length=128)
@@ -23,3 +31,7 @@ class Post(AbstractBaseModel):
     published = models.DateField()
     is_active = models.BooleanField(default=False)
     author = models.ForeignKey('blog.User', CASCADE, related_name='posts')
+
+    class Meta:
+        verbose_name = 'Post'
+        verbose_name_plural = 'Posts'
