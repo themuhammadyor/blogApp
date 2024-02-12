@@ -1,11 +1,15 @@
-{% block title %} Log Out {% endblock %}
+{% extends "blog/base.html" %}
+
+{% load static %}
+
 {% block body %}
+
     <form method="post">
         {% csrf_token %}
         Are you sure to Log Out
             <a><button type="submit">Yes</button></a>
 
         </form>
-        <a href="{% url 'muhammadyor:home-page' %}">
+        <a href="{% url 'blog:home-page' %}">
                     <button>No</button></a>
 {% endblock %}
